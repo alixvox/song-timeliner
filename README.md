@@ -2,7 +2,7 @@
 
 ## Overview
 
-Song Timeliner is a Python application designed to create timelines of multiple artists' discographies. It organizes songs based on their metadata, including release dates, and compiles this information into a CSV file. The application can process existing song files in the directory or download new content from YouTube(untested) and SoundCloud to retrieve accurate metadata.
+Song Timeliner is a Python application designed to create timelines of multiple artists' discographies. It organizes songs based on their metadata, including release dates, and compiles this information into a CSV file. The application can process existing song files in the directory or download new content from YouTube(untested), SoundCloud and BandCamp to retrieve accurate metadata.
 
 ## Prerequisites
 
