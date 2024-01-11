@@ -66,26 +66,25 @@ def main():
     artist_urls, bc_album_urls = convert_args_to_urls(args.args)
 
     # Determine download options based on flags
-    if args.download or args.high_quality:
-        if args.high_quality:
-            ydl_opts = {
-                'format': 'bestaudio',
-                'addmetadata': True,
-                'nooverwrites': True
-            }
-        else:
-            ydl_opts = {
-                'format': 'bestaudio/best',
-                'postprocessors': [{
-                    'key': 'FFmpegExtractAudio',
-                    'preferredcodec': 'mp3',
-                    'preferredquality': '192',
-                }, {
-                    'key': 'FFmpegMetadata',
-                }],
-                'addmetadata': True,
-                'nooverwrites': True
-            }
+    if args.high_quality:
+        ydl_opts = {
+            'format': 'bestaudio',
+            'addmetadata': True,
+            'nooverwrites': True
+        }
+    else:
+        ydl_opts = {
+            'format': 'bestaudio/best',
+            'postprocessors': [{
+                'key': 'FFmpegExtractAudio',
+                'preferredcodec': 'mp3',
+                'preferredquality': '192',
+            }, {
+                'key': 'FFmpegMetadata',
+            }],
+            'addmetadata': True,
+            'nooverwrites': True
+        }
 
     artist_data = []
     artist_folders = set()
