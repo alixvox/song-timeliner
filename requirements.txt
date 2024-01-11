@@ -1,2 +1,2 @@
-youtube-dl
-mutagen
+youtube-dl==2021.12.17
+mutagen==1.47.0
