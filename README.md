@@ -18,7 +18,7 @@ Before you begin, ensure you have the following installed on your system:
 Clone the `song-timeliner` repository to your local machine:
 
 ```bash
-git clone https://github.com/yourusername/song-timeliner.git
+git clone https://github.com/alixvox/song-timeliner.git
 cd song-timeliner
 ```
 
