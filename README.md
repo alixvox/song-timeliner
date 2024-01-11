@@ -49,7 +49,7 @@ This command will process all artist folders present in the root directory of th
 To download and process songs for specific artists, you can use either SoundCloud usernames or YouTube channel IDs:
 
 - **For SoundCloud**: Use the username from the SoundCloud artist's URL. For example, for `https://soundcloud.com/postmalone`, use `postmalone`.
-- **For YouTube**: Use the channel ID from the YouTube channel's URL. This is typically a string that starts with 'UC'. For example, for `https://www.youtube.com/channel/UCwZEU0wAwIyZb4x5G_KJp2w`, use `UCwZEU0wAwIyZb4x5G_KJp2w`.
+- **For YouTube**: Use the channel ID from the YouTube channel's URL. For channels with artists' discographies (These are usually named "[artist] - Topic"), this is typically a string that starts with 'UC'. For example, for `https://www.youtube.com/channel/UCwZEU0wAwIyZb4x5G_KJp2w`, use `UCwZEU0wAwIyZb4x5G_KJp2w`.
 - **For Bandcamp**: Use the username and album ID(s) from the BandCamp artist's URL(s), surrounded by the conditionals `bc` and `cb`. For example, to download the Sigur Rós albums `Ágætis Byrjun`, `Takk` and `Valtari`, use `bc sigurros gaetis-byrjun takk valtari`, taken from each album's URL endpoint.
 
 Run the script with the `-d` flag (`--download_lq`) for low-quality (MP3) downloads or the `-q` flag (`--download_hq`) for high-quality downloads, followed by the artist identifiers:
