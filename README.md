@@ -68,6 +68,8 @@ This command will download all content for these artists into folders by artist 
 
 **Note**: Songs downloaded during a cancelled script run or songs that were downloaded using youtube-dl previously will always be skipped when downloading, but metadata will be (re)added to them.
 
+***EXTRA IMPORTANT NOTE***: To stop all downloads, press CTRL+C or close your terminal.
+
 ## Contributing
 
 Contributions to Song Timeliner are welcome! Please ensure to follow the project's code style and add unit tests for any new features.
