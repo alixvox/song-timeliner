@@ -58,42 +58,52 @@ def create_csv(artist_data, filename):
 def main():
     parser = argparse.ArgumentParser(description='Download and timeline songs.')
     parser.add_argument('args', nargs=argparse.REMAINDER, help='List of artist IDs and Bandcamp albums')
-    parser.add_argument('-d', '--download', action='store_true', help='Download new content for artists')
+    parser.add_argument('-d', '--download', action='store_true', help='Download new content for artists in MP3 format')
+    parser.add_argument('-q', '--high-quality', action='store_true', help='Download new content for artists in high quality')
     args = parser.parse_args()
 
     # Convert arguments to URLs
     artist_urls, bc_album_urls = convert_args_to_urls(args.args)
 
-    ydl_opts = {
-        'format': 'bestaudio/best',
-        'postprocessors': [{
-            'key': 'FFmpegExtractAudio',
-            'preferredcodec': 'mp3',
-            'preferredquality': '192',
-        }, {
-            'key': 'FFmpegMetadata',
-        }],
-        'addmetadata': True
-    }
+    # Determine download options based on flags
+    if args.download or args.high_quality:
+        if args.high_quality:
+            ydl_opts = {
+                'format': 'bestaudio',
+                'addmetadata': True,
+                'nooverwrites': True
+            }
+        else:
+            ydl_opts = {
+                'format': 'bestaudio/best',
+                'postprocessors': [{
+                    'key': 'FFmpegExtractAudio',
+                    'preferredcodec': 'mp3',
+                    'preferredquality': '192',
+                }, {
+                    'key': 'FFmpegMetadata',
+                }],
+                'addmetadata': True,
+                'nooverwrites': True
+            }
 
     artist_data = []
     artist_folders = set()
 
     # Download and process artists
-    if args.download:
-        for artist_id, url in artist_urls.items():
-            artist_dir = os.path.join(os.getcwd(), artist_id)
-            if not os.path.exists(artist_dir):
-                os.makedirs(artist_dir)
-            download_audio(url, artist_id, ydl_opts)
+    for artist_id, url in artist_urls.items():
+        artist_dir = os.path.join(os.getcwd(), artist_id)
+        if not os.path.exists(artist_dir):
+            os.makedirs(artist_dir)
+        download_audio(url, artist_id, ydl_opts)
 
-        # Process Bandcamp albums
-        for artist_id, albums in bc_album_urls.items():
-            artist_dir = os.path.join(os.getcwd(), 'bc-' + artist_id)
-            if not os.path.exists(artist_dir):
-                os.makedirs(artist_dir)
-            for album_url in albums:
-                download_audio(album_url, 'bc-' + artist_id, ydl_opts)
+    # Process Bandcamp albums
+    for artist_id, albums in bc_album_urls.items():
+        artist_dir = os.path.join(os.getcwd(), 'bc-' + artist_id)
+        if not os.path.exists(artist_dir):
+            os.makedirs(artist_dir)
+        for album_url in albums:
+            download_audio(album_url, 'bc-' + artist_id, ydl_opts)
 
     # Process each file in the artist's directory
     for artist_id in os.listdir('.'):
