@@ -70,7 +70,7 @@ Contributions to Song Timeliner are welcome! Please ensure to follow the project
 
 ## License
 
-\[chosen license\]
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Contact
 
