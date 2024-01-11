@@ -58,15 +58,20 @@ def create_csv(artist_data, filename):
 def main():
     parser = argparse.ArgumentParser(description='Download and timeline songs.')
     parser.add_argument('args', nargs=argparse.REMAINDER, help='List of artist IDs and Bandcamp albums')
-    parser.add_argument('-d', '--download', action='store_true', help='Download new content for artists in MP3 format')
-    parser.add_argument('-q', '--high-quality', action='store_true', help='Download new content for artists in high quality')
+    parser.add_argument('-d', '--download_lq', action='store_true', default=False, help='Download new content for artists in MP3 format')
+    parser.add_argument('-q', '--download_hq', action='store_true', default=False, help='Download new content for artists in high quality')
     args = parser.parse_args()
+
+    # Check if download flags are set when additional arguments are provided
+    if args.args and not (args.download_lq or args.download_hq):
+        print("Error: Please specify either -d (--dl-lq) or -q (--dl-hq) when providing artist IDs or Bandcamp albums.")
+        return
 
     # Convert arguments to URLs
     artist_urls, bc_album_urls = convert_args_to_urls(args.args)
 
     # Determine download options based on flags
-    if args.high_quality:
+    if args.download_hq:
         ydl_opts = {
             'format': 'bestaudio',
             'addmetadata': True,

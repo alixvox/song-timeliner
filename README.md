@@ -9,7 +9,7 @@ Song Timeliner is a Python application designed to create timelines of multiple 
 Before you begin, ensure you have the following installed on your system:
 
 1.  Python 3
-2.  `ffmpeg` or `ffprobe` for handling media files
+2.  `ffmpeg` or `ffprobe` if you want to use the -d flag, which uses ffmpeg to convert lossless downloads to mp3.
 
 ## Installation
 
@@ -50,14 +50,18 @@ To download and process songs for specific artists, you can use either SoundClou
 
 - **For SoundCloud**: Use the username from the SoundCloud artist's URL. For example, for `https://soundcloud.com/postmalone`, use `postmalone`.
 - **For YouTube**: Use the channel ID from the YouTube channel's URL. This is typically a string that starts with 'UC'. For example, for `https://www.youtube.com/channel/UCwZEU0wAwIyZb4x5G_KJp2w`, use `UCwZEU0wAwIyZb4x5G_KJp2w`.
-- **For Bandcamp**: Use the username and album ID(s) from the BandCamp artist's URL(s), surrounded by the conditionals `bc` and `cb`. For example, to download Sigur Rós' albums `Ágætis Byrjun`, `Takk` and `Valtari`, use `bc sigurros gaetis-byrjun takk valtari`, taken from each album's URL endpoint.
+- **For Bandcamp**: Use the username and album ID(s) from the BandCamp artist's URL(s), surrounded by the conditionals `bc` and `cb`. For example, to download the Sigur Rós albums `Ágætis Byrjun`, `Takk` and `Valtari`, use `bc sigurros gaetis-byrjun takk valtari`, taken from each album's URL endpoint.
 
-Run the script with the `-d` flag (or `--download`) followed by the artist identifiers:
+Run the script with the `-d` flag (`--download_lq`) for low-quality (MP3) downloads or the `-q` flag (`--download_hq`) for high-quality downloads, followed by the artist identifiers:
 
 ```bash
-python3 song-timeliner.py -d [username/ID] [another username/ID] ...
-## For example:
+# For low-quality (MP3) downloads:
 python3 song-timeliner.py -d postmalone UCwZEU0wAwIyZb4x5G_KJp2w bc sigurros takk valtari cb
+# For high-quality (best available) downloads:
+python3 song-timeliner.py -q postmalone UCwZEU0wAwIyZb4x5G_KJp2w bc sigurros takk valtari cb
+
+# Using the full flag for -d
+python3 song-timeliner.py --download-lq postmalone UCwZEU0wAwIyZb4x5G_KJp2w bc sigurros takk valtari cb
 ```
 
 This command will download all content for these artists into folders by artist and organize all artist folders present in the root directory into a .csv.
