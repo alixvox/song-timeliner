@@ -46,7 +46,7 @@ This command will process all artist folders present in the root directory of th
 
 ### Method 2: Downloading and Processing New Songs (and Existing Ones)
 
-To download and process songs for specific artists, you can use either SoundCloud usernames or YouTube channel IDs:
+To download and process songs for specific artists, you can use either SoundCloud usernames, YouTube channel IDs, or Bandcamp user and album IDs:
 
 - **For SoundCloud**: Use the username from the SoundCloud artist's URL. For example, for `https://soundcloud.com/postmalone`, use `postmalone`.
 - **For YouTube**: Use the channel ID from the YouTube channel's URL. For channels with artists' discographies (These are usually named "[artist] - Topic"), this is typically a string that starts with 'UC'. For example, for `https://www.youtube.com/channel/UCwZEU0wAwIyZb4x5G_KJp2w`, use `UCwZEU0wAwIyZb4x5G_KJp2w`.
