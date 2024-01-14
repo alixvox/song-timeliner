@@ -74,12 +74,15 @@ def main():
     if args.download_hq:
         ydl_opts = {
             'format': 'bestaudio',
+            'postprocessors': [{
+                'key': 'FFmpegMetadata',
+            }],
             'addmetadata': True,
             'nooverwrites': True
         }
     else:
         ydl_opts = {
-            'format': 'bestaudio',
+            'format': 'bestaudio[abr<=192]',  # Adjust the bitrate as needed
             'postprocessors': [{
                 'key': 'FFmpegExtractAudio',
                 'preferredcodec': 'mp3',
