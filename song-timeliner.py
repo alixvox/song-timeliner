@@ -79,7 +79,7 @@ def main():
         }
     else:
         ydl_opts = {
-            'format': 'bestaudio/best',
+            'format': 'bestaudio',
             'postprocessors': [{
                 'key': 'FFmpegExtractAudio',
                 'preferredcodec': 'mp3',
